@@ -102,7 +102,7 @@ export default function Text() {
 		//     querySnapshot.forEach((doc) => newdata.push(doc.data()));
 		//     setData(newdata);
 		//   });
-		Axios.get("http://localhost:3001/getData", {
+		Axios.get("https://tree-akin.vercel.app/getData", {
 			params: { limit: 10 },
 		}).then((response) => {
 			setData(response.data);
@@ -166,7 +166,7 @@ export default function Text() {
 		//   .then((querySnapshot) => {
 		//     console.log(querySnapshot.docs.map((v) => v.data()));
 		//   });
-		Axios.get("http://localhost:3001/getfilter", {
+		Axios.get("https://tree-akin.vercel.app/getfilter", {
 			codex: binary.join(),
 		}).then((response) => console.log(response));
 		setIsLoading(false);

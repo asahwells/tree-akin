@@ -50,7 +50,7 @@ const Admin = ({ handleLogout }) => {
 		// newValue.forEach((val) => {
 		//   db.collection("answers").doc(val.code).update(val);
 		// });
-		Axios.put("http://localhost:3001/updated", {
+		Axios.put("http://tree-akin.vercel.app/updated", {
 			values: newValue,
 		}).then(() => {
 			console.log("successful");
@@ -124,7 +124,7 @@ const Admin = ({ handleLogout }) => {
 	// 	// 	return o;
 	// 	// });
 
-	// 	// Axios.post("http://localhost:3001/create", {
+	// 	// Axios.post("http://tree-akin.vercel.app/create", {
 	// 	// 	data: sqlsyntaxdata,
 	// 	// })
 	// 	// 	.then(() => {
@@ -161,13 +161,13 @@ const Admin = ({ handleLogout }) => {
 			const formData = new FormData();
 			formData.append("image", e.target.files[0]);
 			formData.append("code", code);
-			Axios.put("http://localhost:3001/upload", formData).then(() => {
+			Axios.put("http://tree-akin.vercel.app/upload", formData).then(() => {
 				console.log("successful");
 			});
 		}
 	};
 	useEffect(() => {
-		Axios.get("http://localhost:3001/get", {
+		Axios.get("http://tree-akin.vercel.app/get", {
 			params: { limit: 10, offset: activeStep },
 		}).then((response) => {
 			setCode(response.data);
@@ -303,7 +303,7 @@ const Admin = ({ handleLogout }) => {
 												/>
 												{co.images !== "" ? (
 													<img
-														src={"http://localhost:3001/" + co.images}
+														src={"https://tree-akin.vercel.app/" + co.images}
 														alt={co.botanicalName}
 														style={{ height: 90, width: 90 }}
 													/>
