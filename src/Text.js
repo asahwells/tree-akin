@@ -154,8 +154,8 @@ export default function Text() {
 
 	const tree = data;
 	// const newTree = tree.map((trees) => trees.code);
-	const filteredCode = tree.filter((tre) => {
-		return tre.code.indexOf(binary.join()) !== -1;
+	const filteredCode = tree?.filter((tre) => {
+		return tre?.code?.indexOf(binary?.join()) !== -1;
 	});
 	console.log(filteredCode, "filteredcode", tree);
 	const filterAnswersToShow = () => {
@@ -167,13 +167,13 @@ export default function Text() {
 		//     console.log(querySnapshot.docs.map((v) => v.data()));
 		//   });
 		Axios.get("https://tree-akin.vercel.app/getfilter", {
-			codex: binary.join(),
+			codex: binary?.join(),
 		}).then((response) => console.log(response));
 		setIsLoading(false);
 	};
 	// useEffect(() => {
 	// }, []);
-	console.log(binary.join());
+	console.log(binary?.join());
 
 	// const getCode = (code) => {
 	//   const index = tree.find((item) => item.code === code);
