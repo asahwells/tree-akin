@@ -102,10 +102,10 @@ export default function Text() {
 		//     querySnapshot.forEach((doc) => newdata.push(doc.data()));
 		//     setData(newdata);
 		//   });
-		Axios.get("https://tree-akin.vercel.app/getData", {
+		Axios.get("http://localhost:3001/getData", {
 			params: { limit: 10 },
 		}).then((response) => {
-			setData(response.data);
+			setData(response?.data || []);
 			console.log(response.data);
 			setIsLoading(false);
 		});
@@ -155,6 +155,7 @@ export default function Text() {
 	const tree = data;
 	// const newTree = tree.map((trees) => trees.code);
 	const filteredCode = tree?.filter((tre) => {
+		if (binary.length === 0) return true;
 		return tre?.code?.indexOf(binary?.join()) !== -1;
 	});
 	console.log(filteredCode, "filteredcode", tree);
@@ -166,11 +167,12 @@ export default function Text() {
 		//   .then((querySnapshot) => {
 		//     console.log(querySnapshot.docs.map((v) => v.data()));
 		//   });
-		Axios.get("https://tree-akin.vercel.app/getfilter", {
+		Axios.get("http://localhost:3001/getfilter", {
 			codex: binary?.join(),
 		}).then((response) => console.log(response));
 		setIsLoading(false);
 	};
+
 	// useEffect(() => {
 	// }, []);
 	console.log(binary?.join());
