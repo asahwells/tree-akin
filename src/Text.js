@@ -154,7 +154,7 @@ export default function Text() {
 
 	// const tree = data;
 	// const newTree = tree.map((trees) => trees.code);
-	const filteredCode = data?.filter((tre) => {
+	const filteredCode = (data || [])?.filter((tre) => {
 		if (binary.length === 0) return true;
 		return tre?.code?.indexOf(binary?.join()) !== -1;
 	});
