@@ -50,12 +50,13 @@ const Admin = ({ handleLogout }) => {
 		// newValue.forEach((val) => {
 		//   db.collection("answers").doc(val.code).update(val);
 		// });
-		Axios.put("http://localhost:3001/updated", {
-			values: newValue,
+		Axios.put("https://tree-akin.vercel.app/updated", {
+			values: code,
 		}).then(() => {
 			console.log("successful");
 			setActiveStep((prevActiveStep) => prevActiveStep + 1);
 			setOpen(true);
+			setIsLoading(true);
 		});
 	};
 
@@ -101,37 +102,36 @@ const Admin = ({ handleLogout }) => {
 	//   setIsLoading(true);
 	// }, []);
 
-	const maxSteps = code.length;
+	const maxSteps = 65536;
 	// const newSqlValues = sqlValues.slice(
 	//   activeStep * 100,
 	//   activeStep * 100 + 100
 	// );
-	const newValue = code.slice(activeStep * 100, activeStep * 100 + 100);
 
 	// const newImage = newValue.map((fix) => fix.images);
 
 	// useEffect(() => {
 	// 	const newCode = [...code];
 	// 	const sqlsyntaxdata = newCode.map((r) => r.map((e) => Object.values(e)));
-	// 	// console.log(sqlsyntaxdata, "shajnnn");
-	// 	// let data = newCode.reduce((o, a, code) => {
-	// 	// 	let ini = [];
-	// 	// 	ini.push(a.botanicalName);
-	// 	// 	ini.push(a.code);
-	// 	// 	ini.push(a.commonName);
-	// 	// 	ini.push(a.image);
-	// 	// 	o.push(ini);
-	// 	// 	return o;
-	// 	// });
+	// 	console.log(sqlsyntaxdata, "shajnnn");
+	// 	let data = newCode.reduce((o, a, code) => {
+	// 		let ini = [];
+	// 		ini.push(a.botanicalName);
+	// 		ini.push(a.code);
+	// 		ini.push(a.commonName);
+	// 		ini.push(a.image);
+	// 		o.push(ini);
+	// 		return o;
+	// 	});
 
-	// 	// Axios.post("http://localhost:3001/create", {
-	// 	// 	data: sqlsyntaxdata,
-	// 	// })
-	// 	// 	.then(() => {
-	// 	// 		console.log("successful");
-	// 	// 	})
-	// 	// 	.catch((e) => console.error(e));
-	// 	// console.log(sqlsyntaxdata);
+	// 	Axios.post("https://tree-akin.vercel.app/create", {
+	// 		data: sqlsyntaxdata,
+	// 	})
+	// 		.then(() => {
+	// 			console.log("successful");
+	// 		})
+	// 		.catch((e) => console.error(e));
+	// 	console.log(sqlsyntaxdata);
 	// }, []);
 
 	const handleBotanicalName = (codeName, value) => {
@@ -161,18 +161,18 @@ const Admin = ({ handleLogout }) => {
 			const formData = new FormData();
 			formData.append("image", e.target.files[0]);
 			formData.append("code", code);
-			Axios.put("http://localhost:3001/upload", formData).then(() => {
+			Axios.put("https://tree-akin.vercel.app/upload", formData).then(() => {
 				console.log("successful");
 			});
 		}
 	};
 	useEffect(() => {
-		Axios.get("http://localhost:3001/get", {
+		Axios.get("https://tree-akin.vercel.app/get", {
 			params: { limit: 10, offset: activeStep },
 		}).then((response) => {
-			setCode(response.data);
-			console.log("response:", response.data);
 			setIsLoading(false);
+			setCode(response.data);
+			// console.log("response:", response.data, code);
 		});
 	}, [activeStep]);
 
@@ -218,7 +218,7 @@ const Admin = ({ handleLogout }) => {
 	// };
 
 	// console.log(newValue);
-	console.log(maxSteps, activeStep, "active and maxsteps");
+	// console.log(activeStep, "active");
 	return (
 		<>
 			<AdminHeader />
@@ -246,7 +246,7 @@ const Admin = ({ handleLogout }) => {
 								</tr>
 							</thead>
 							<tbody>
-								{newValue
+								{code
 									.filter((val) => {
 										if (search === "") {
 											return val;
@@ -303,7 +303,7 @@ const Admin = ({ handleLogout }) => {
 												/>
 												{co.images !== "" ? (
 													<img
-														src={"http://localhost:3001/" + co.images}
+														src={"https://tree-akin.vercel.app/" + co.images}
 														alt={co.botanicalName}
 														style={{ height: 90, width: 90 }}
 													/>
@@ -465,7 +465,7 @@ const Admin = ({ handleLogout }) => {
 
 		//                     {co.images !== "" ? (
 		//                       <img
-		//                         src={"http://localhost:3001/" + co.images}
+		//                         src={"https://tree-akin.vercel.app/" + co.images}
 		//                         alt={co.botanicalName}
 		//                         style={{ height: 90, width: 90 }}
 		//                       />
