@@ -152,13 +152,13 @@ export default function Text() {
 
 	// kpk
 
-	const tree = data;
+	// const tree = data;
 	// const newTree = tree.map((trees) => trees.code);
-	const filteredCode = tree?.filter((tre) => {
+	const filteredCode = data?.filter((tre) => {
 		if (binary.length === 0) return true;
 		return tre?.code?.indexOf(binary?.join()) !== -1;
 	});
-	console.log(filteredCode, "filteredcode", tree);
+	// console.log(filteredCode, "filteredcode", tree);
 	const filterAnswersToShow = () => {
 		// const db = firebase.firestore();
 		// db.collection("answers")
