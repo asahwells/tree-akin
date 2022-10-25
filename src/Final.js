@@ -70,7 +70,7 @@ const Final = (props) => {
 								<td data-label="Image">
 									<img
 										src={
-											"https://tree-akin.vercel.app/" +
+											"https://git.heroku.com/akin-app.git/" +
 											props.location.state.Image
 										}
 										alt={props.location.state.BotanicalName}
