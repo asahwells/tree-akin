@@ -155,11 +155,8 @@ export default function Text() {
 
 	// const tree = data;
 	// const newTree = tree.map((trees) => trees.code);
-	const filteredCode = [];
-	(data || [])?.forEach((tre) => {
-		if (tre?.code?.indexOf(binary?.join()) !== -1) {
-			filteredCode.push(tre);
-		}
+	const filteredCode = [...(data || [])].filter((tre) => {
+		return tre?.code?.indexOf(binary?.join()) !== -1;
 	});
 	// console.log(filteredCode, "filteredcode", tree);
 	const filterAnswersToShow = () => {
