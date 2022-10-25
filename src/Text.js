@@ -102,6 +102,7 @@ export default function Text() {
 		//     querySnapshot.forEach((doc) => newdata.push(doc.data()));
 		//     setData(newdata);
 		//   });
+		// Axios.get("http://localhost:3001/getData", {
 		Axios.get("https://tree-akin.vercel.app/getData", {
 			params: { limit: 10 },
 		}).then((response) => {
@@ -154,9 +155,11 @@ export default function Text() {
 
 	// const tree = data;
 	// const newTree = tree.map((trees) => trees.code);
-	const filteredCode = (data || [])?.filter((tre) => {
-		if (binary.length === 0) return true;
-		return tre?.code?.indexOf(binary?.join()) !== -1;
+	const filteredCode = [];
+	(data || [])?.forEach((tre) => {
+		if (tre?.code?.indexOf(binary?.join()) !== -1) {
+			filteredCode.push(tre);
+		}
 	});
 	// console.log(filteredCode, "filteredcode", tree);
 	const filterAnswersToShow = () => {
