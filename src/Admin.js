@@ -167,15 +167,15 @@ const Admin = ({ handleLogout }) => {
 		}
 	};
 	useEffect(() => {
-		Axios.get("https://akin-app.herokuapp.com/get", {
-			params: { limit: 10, offset: activeStep },
-		}).then((response) => {
+		Axios.get("https://akin-app.herokuapp.com/get").then((response) => {
 			setIsLoading(false);
 			setCode(response.data);
 			// console.log("response:", response.data, code);
 		});
 	}, [activeStep]);
-
+	// console.log(
+	// 	code.filter((r) => r.code.includes("1,1,1,0,1,0,0,1,0,1,0,1,1,1,1,1"))
+	// );
 	// useEffect(() => {
 	//   Axios.get("https://akin-app.herokuapp.com/onload").then((response) => {
 	//     setImage("https://akin-app.herokuapp.com/" + response.data.image);
@@ -221,7 +221,7 @@ const Admin = ({ handleLogout }) => {
 	// console.log(activeStep, "active");
 	return (
 		<>
-			<AdminHeader />
+			<AdminHeader search={search} setSearch={setSearch} />
 			<div>
 				{isLoading === true ? (
 					<Loader />
@@ -247,15 +247,19 @@ const Admin = ({ handleLogout }) => {
 							</thead>
 							<tbody>
 								{code
-									.filter((val) => {
-										if (search === "") {
-											return val;
-										} else if (val.code.includes(search)) {
-											return val;
-										} else if (val.botanicalName.includes(search)) {
-											return val;
-										}
-									})
+									.filter((r) => r.code.includes(search))
+									// code
+									// 	.filter((val) => {
+
+									// 		if (search === "") {
+									// 			return val;
+									// 		} else if (val.code.includes(search)) {
+									// 			return val;
+									// 		} else if (val.botanicalName.includes(search)) {
+									// 			return val;
+									// 		}
+									// 	}
+									// 	)
 									.map((co, i) => (
 										<tr key={i}>
 											<th scope="row">

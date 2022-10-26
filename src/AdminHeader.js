@@ -159,7 +159,7 @@ const MobileMenu = styled.nav`
 		cursor: pointer;
 	}
 `;
-const Header = ({ handleLogout, setSearch }) => {
+const Header = ({ handleLogout, setSearch, search }) => {
 	const [click, setClick] = useState(false);
 	//const handleClick = () => setClick(!click);
 	const ref = useRef(null);
@@ -234,6 +234,7 @@ const Header = ({ handleLogout, setSearch }) => {
 					//   className={classes.headers}
 					type="search"
 					placeholder="Search...."
+					value={search}
 					onChange={(e) => setSearch(e.target.value)}
 				/>
 				<div>
