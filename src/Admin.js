@@ -167,7 +167,7 @@ const Admin = ({ handleLogout }) => {
 		}
 	};
 	useEffect(() => {
-		Axios.get("https://akin-app.herokuapp.com/get").then((response) => {
+		Axios.get("https://akin-app.herokuapp.com/get",{params:{limit:100,offset:activeStep}}).then((response) => {
 			setIsLoading(false);
 			setCode(response.data);
 			// console.log("response:", response.data, code);
